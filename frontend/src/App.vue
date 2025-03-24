@@ -1,9 +1,9 @@
 <template>
   <div class="min-h-screen bg-gray-100 overflow-auto fixed inset-0">
     <div class="min-h-full py-6 flex flex-col items-center space-y-6">
-      <div class="w-full max-w-xl px-4">
+      <div class="w-full max-w-3xl px-4">
         <div class="relative px-4 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-          <div class="max-w-md mx-auto">
+          <div class="max-w-2xl mx-auto">
             <div class="divide-y divide-gray-200">
               <div class="text-base leading-6 space-y- text-gray-700 sm:text-lg sm:leading-7">
                 <h1 class="text-2xl font-bold mb-8 text-center text-indigo-600">Resolv Points Dilution Calculator</h1>
@@ -84,7 +84,7 @@
                           {{ result.dilutionPercentage > 0 ? '+' : '' }}{{ result.dilutionPercentage }}%
                         </span>
                         <span class="text-sm text-gray-500 ml-1">
-                          (share of points {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }})
+                          (share of points {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }} daily)
                         </span>
                       </p>
                     </div>
@@ -93,7 +93,7 @@
                       <p class="text-lg">
                         <span class="font-bold text-indigo-600">{{ result.totalPoints.toLocaleString() }}</span>
                         <span class="text-sm text-gray-500 ml-1">
-                          ({{ ((result.totalPoints / pointsStats.today) * 100).toFixed(4) }}% of grand total)
+                          ({{ ((result.totalPoints / pointsStats.today) * 100).toFixed(4) }}% of all points)
                         </span>
                       </p>
                     </div>
@@ -101,7 +101,7 @@
                       <h4 class="text-sm font-medium text-gray-500 mb-1">Daily Points</h4>
                       <p class="text-lg">
                         <span class="font-bold text-indigo-600">{{ result.currentPoints.toLocaleString() }}</span>
-                        <span class="text-sm text-gray-500 ml-1">points/day ({{ ((result.currentPoints / pointsStats.change) * 100).toFixed(4) }}% of daily change)</span>
+                        <span class="text-sm text-gray-500 ml-1">points/day ({{ ((result.currentPoints / pointsStats.change) * 100).toFixed(4) }}% of daily new points)</span>
                       </p>
                     </div>
                   </div>
@@ -111,7 +111,7 @@
           </div>
         </div>
       </div>
-      <div class="w-full max-w-xl px-4">
+      <div class="w-full max-w-3xl px-4">
         <div class="relative px-4 py-6 bg-white shadow-lg sm:rounded-3xl sm:p-8">
           <div class="max-w-md mx-auto">
             <div class="space-y-4 text-center">
@@ -134,7 +134,7 @@
           </div>
         </div>
       </div>
-      <div class="w-full max-w-xl px-4">
+      <div class="w-full max-w-3xl px-4">
         <div class="text-center">
           <p class="text-sm text-gray-600">
             Built by the team behind <a href="https://tryethernal.com?ref=resolv-dilutor" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-medium">Ethernal</a> | Code available on <a href="https://github.com/antoinedc/resolv-dilutor" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-medium">Github</a>
