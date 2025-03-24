@@ -97,7 +97,8 @@ serve(async (req: Request) => {
       const response = await fetch(`https://api.resolv.im/points?address=${address}`);
       const data = await response.json();
       console.log('Resolv API response:', data);
-      const userPoints = data.totalPoints;
+      const userPoints = data.dailyPoints;
+      const totalPoints = data.totalPoints;
 
       const dilutionRate = (today.total_points - yesterday.total_points) / yesterday.total_points;
       const userDilution = userPoints > 0 ? -dilutionRate * 100 : 0;
@@ -106,9 +107,9 @@ serve(async (req: Request) => {
       return new Response(JSON.stringify({
         address,
         currentPoints: userPoints,
+        totalPoints: totalPoints,
         dilutionPercentage: userDilution.toFixed(2),
-        minPointsNeeded: today.min_points_needed,
-        totalPoints: today.total_points
+        minPointsNeeded: today.min_points_needed
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });

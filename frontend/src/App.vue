@@ -65,8 +65,8 @@
 
                 <div v-if="result" class="mt-8 p-4 bg-gray-50 rounded-lg">
                   <h3 class="text-lg font-semibold mb-4">Results:</h3>
-                  <p class="mb-2">Total points earned: <span class="font-bold">{{ result.currentPoints.toLocaleString() }}</span></p>
-                  <p class="mb-2">Share of total points: <span class="font-bold">{{ ((result.currentPoints / result.totalPoints) * 100).toFixed(2) }}%</span></p>
+                  <p class="mb-2">Currently earning <span class="font-bold">{{ result.currentPoints.toLocaleString() }}</span> points/day</p>
+                  <p class="mb-2">Points: <span class="font-bold">{{ result.totalPoints.toLocaleString() }}</span> (<span class="font-bold">{{ ((result.totalPoints / pointsStats.today) * 100).toFixed(4) }}%</span> of total)</p>
                   <p class="mb-2">
                     Dilution Rate: 
                     <span :class="{'text-red-600': result.dilutionPercentage > 0, 'text-green-600': result.dilutionPercentage <= 0}" class="font-bold">
@@ -77,7 +77,7 @@
                     </span>
                   </p>
                   <p class="text-xs text-gray-500 mt-1">
-                    Calculation compares your total points against the change in total points between yesterday and today (all numbers are fetched from the Resolv API).
+                    Calculation compares your current daily points against the change in total points between yesterday and today (all numbers are fetched from the Resolv API).
                   </p>
                 </div>
               </div>
