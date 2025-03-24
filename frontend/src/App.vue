@@ -71,7 +71,7 @@
                       <p class="text-lg">
                         <span class="font-bold text-indigo-600">{{ result.totalPoints.toLocaleString() }}</span>
                         <span class="text-sm text-gray-500 ml-1">
-                          ({{ ((result.currentPoints / result.totalPoints) * 100).toFixed(4) }}% earned today)
+                          ({{ ((result.totalPoints / pointsStats.today) * 100).toFixed(4) }}% of total)
                         </span>
                       </p>
                     </div>
