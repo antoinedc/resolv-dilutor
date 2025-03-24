@@ -14,6 +14,20 @@ serve(async (req: Request) => {
   }
 
   try {
+    // Security check: Verify authorization header
+    const authHeader = req.headers.get('authorization');
+    const expectedAuthHeader = `Bearer ${Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')}`;
+
+    if (!authHeader || authHeader !== expectedAuthHeader) {
+      return new Response(JSON.stringify({
+        error: 'Unauthorized',
+        message: 'Invalid or missing authorization header'
+      }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL');
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
