@@ -65,18 +65,36 @@
 
                 <div v-if="result" class="mt-8 p-4 bg-gray-50 rounded-lg">
                   <h3 class="text-lg font-semibold mb-4">Results:</h3>
-                  <p class="mb-2">Currently earning <span class="font-bold">{{ result.currentPoints.toLocaleString() }}</span> points/day</p>
-                  <p class="mb-2">Points: <span class="font-bold">{{ result.totalPoints.toLocaleString() }}</span> (<span class="font-bold">{{ ((result.totalPoints / pointsStats.today) * 100).toFixed(4) }}%</span> of total)</p>
-                  <p class="mb-2">
-                    Dilution Rate: 
-                    <span :class="{'text-red-600': result.dilutionPercentage > 0, 'text-green-600': result.dilutionPercentage <= 0}" class="font-bold">
-                      {{ result.dilutionPercentage > 0 ? '+' : '' }}{{ result.dilutionPercentage }}%
-                      <span class="font-normal text-sm">
-                        (share of points {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }})
-                      </span>
-                    </span>
-                  </p>
-                  <p class="text-xs text-gray-500 mt-1">
+                  <div class="space-y-4">
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-500 mb-1">Total Points Earned</h4>
+                      <p class="text-lg">
+                        <span class="font-bold text-indigo-600">{{ result.totalPoints.toLocaleString() }}</span>
+                        <span class="text-sm text-gray-500 ml-1">
+                          ({{ ((result.totalPoints / pointsStats.today) * 100).toFixed(4) }}% of total)
+                        </span>
+                      </p>
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-500 mb-1">Daily Points</h4>
+                      <p class="text-lg">
+                        <span class="font-bold text-indigo-600">{{ result.currentPoints.toLocaleString() }}</span>
+                        <span class="text-sm text-gray-500 ml-1">points/day</span>
+                      </p>
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-500 mb-1">Dilution Rate</h4>
+                      <p class="text-lg">
+                        <span :class="{'text-red-600': result.dilutionPercentage > 0, 'text-green-600': result.dilutionPercentage <= 0}" class="font-bold">
+                          {{ result.dilutionPercentage > 0 ? '+' : '' }}{{ result.dilutionPercentage }}%
+                        </span>
+                        <span class="text-sm text-gray-500 ml-1">
+                          (share of points {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }})
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-4">
                     Calculation compares your current daily points against the change in total points between yesterday and today (all numbers are fetched from the Resolv API).
                   </p>
                 </div>
