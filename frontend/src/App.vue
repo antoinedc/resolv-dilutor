@@ -69,9 +69,9 @@
                     <div>
                       <h4 class="text-sm font-medium text-gray-500 mb-1">Total Points Earned</h4>
                       <p class="text-lg">
-                        <span class="font-bold text-indigo-600">{{ result.totalPoints.toLocaleString() }}</span>
+                        <span class="font-bold text-indigo-600">{{ result.currentPoints.toLocaleString() }}</span>
                         <span class="text-sm text-gray-500 ml-1">
-                          ({{ ((result.totalPoints / pointsStats.today) * 100).toFixed(4) }}% of total)
+                          ({{ ((result.currentPoints / pointsStats.today) * 100).toFixed(4) }}% of today's total)
                         </span>
                       </p>
                     </div>
