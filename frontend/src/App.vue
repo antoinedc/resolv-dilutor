@@ -105,9 +105,6 @@
                       </p>
                     </div>
                   </div>
-                  <p class="text-xs text-gray-500 mt-4">
-                    Calculation compares your current daily points against the change in total points between yesterday and today (all numbers are fetched from the Resolv API).
-                  </p>
                 </div>
               </div>
             </div>
