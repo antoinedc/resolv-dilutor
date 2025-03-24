@@ -50,8 +50,8 @@ Response:
 {
   "address": "0x...",
   "currentPoints": 100,
-  "dilutionPercentage": "5.2",
-  "minPointsNeeded": 10
+  "totalPoints": 1000,
+  "dilutionPercentage": "5.2"
 }
 ```
 
@@ -62,6 +62,19 @@ Response:
 ```json
 {
   "minPointsNeeded": 10
+}
+```
+
+### GET /api/points-stats
+Get current points statistics
+
+Response:
+```json
+{
+  "today": 1000000,
+  "yesterday": 900000,
+  "change": 100000,
+  "changePercentage": 11.11
 }
 ```
 
