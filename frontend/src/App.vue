@@ -66,7 +66,7 @@
                 <div v-if="result" class="mt-8 p-4 bg-gray-50 rounded-lg">
                   <h3 class="text-lg font-semibold mb-4">Results:</h3>
                   <p class="mb-2">Currently earning <span class="font-bold">{{ result.currentPoints.toLocaleString() }}</span> points/day</p>
-                  <p class="mb-2">Points: <span class="font-bold">{{ result.currentPoints.toLocaleString() }}</span> ({{ ((result.currentPoints / pointsStats.today) * 100).toFixed(2) }}% of total)</p>
+                  <p class="mb-2">Points: <span class="font-bold">{{ result.currentPoints.toLocaleString() }}</span> ({{ ((result.currentPoints / result.totalPoints) * 100).toFixed(2) }}% of total)</p>
                   <p class="mb-2">
                     Dilution Rate: 
                     <span :class="{'text-red-600': result.dilutionPercentage > 0, 'text-green-600': result.dilutionPercentage <= 0}" class="font-bold">

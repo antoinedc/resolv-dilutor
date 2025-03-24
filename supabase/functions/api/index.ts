@@ -107,7 +107,8 @@ serve(async (req: Request) => {
         address,
         currentPoints: userPoints,
         dilutionPercentage: userDilution.toFixed(2),
-        minPointsNeeded: today.min_points_needed
+        minPointsNeeded: today.min_points_needed,
+        totalPoints: today.total_points
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
