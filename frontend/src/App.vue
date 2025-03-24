@@ -90,7 +90,7 @@
                       <h4 class="text-sm font-medium text-gray-500 mb-1">Daily Points</h4>
                       <p class="text-lg">
                         <span class="font-bold text-indigo-600">{{ result.currentPoints.toLocaleString() }}</span>
-                        <span class="text-sm text-gray-500 ml-1">points/day</span>
+                        <span class="text-sm text-gray-500 ml-1">points/day ({{ ((result.currentPoints / pointsStats.change) * 100).toFixed(4) }}% of daily change)</span>
                       </p>
                     </div>
                   </div>
