@@ -9,10 +9,16 @@ This application calculates the dilution of Resolv points for Ethereum addresses
   - `functions/api/`: API endpoints for dilution calculation
 - `frontend/`: Vue 3 frontend application
 
-## Backend Setup (Supabase)
+## Environment Setup
 
+### Backend (Supabase)
 1. Create a new Supabase project
-2. Copy `.env.example` to `.env` and fill in your Supabase credentials
+2. Copy `supabase/.env.example` to `supabase/.env` and fill in your Supabase credentials:
+   ```
+   SUPABASE_URL=your_supabase_project_url
+   SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+   ```
 3. Deploy the Edge Functions:
    ```bash
    cd backend
@@ -21,12 +27,18 @@ This application calculates the dilution of Resolv points for Ethereum addresses
    ```
 4. The cron job will run automatically at 00:05 UTC daily
 
-## Frontend Setup (Netlify)
-
-1. Create a new Netlify site
-2. Configure the following environment variables in Netlify:
-   - `VITE_SUPABASE_URL`: Your Supabase project URL
-   - `VITE_API_ENDPOINT`: Your Supabase Edge Function API endpoint
+### Frontend
+1. Copy `frontend/.env.example` to `frontend/.env` and configure:
+   ```
+   VITE_API_URL=your_supabase_functions_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+2. Install dependencies and run locally:
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
 
 ## API Endpoints
 
@@ -75,12 +87,12 @@ Response:
    npm run dev
    ```
 
-## Features
+## Security Notes
 
-- Calculate points dilution for any Ethereum address
-- Display minimum points needed to avoid dilution
-- Daily updates of total points and dilution rates
-- Modern, responsive UI with Tailwind CSS
+1. Never commit `.env` files to the repository
+2. Keep your Supabase service role key secure and never expose it publicly
+3. The frontend only uses the anon key for public API access
+4. All sensitive operations are protected by Row Level Security (RLS) in Supabase
 
 ## Deployment
 
@@ -91,10 +103,10 @@ Response:
 ```bash
 supabase link --project-ref your-project-ref
 ```
-3. Deploy the Edge Function:
+3. Deploy the Edge Functions:
 ```bash
 cd backend
-npm run deploy
+supabase functions deploy
 ```
 
 4. Set up the cron job in Supabase dashboard to run every day at 00:05 UTC
@@ -103,8 +115,5 @@ npm run deploy
 
 1. Push your code to a Git repository
 2. Connect your repository to Netlify
-3. Configure the build settings:
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-4. Set the environment variables in Netlify dashboard
-5. Deploy! 
+3. Configure environment variables in Netlify's dashboard
+4. Deploy! 

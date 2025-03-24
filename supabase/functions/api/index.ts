@@ -67,6 +67,21 @@ serve(async (req: Request) => {
       });
     }
 
+    // Handle points statistics endpoint
+    if (routePath === '/points-stats') {
+      const change = today.total_points - yesterday.total_points;
+      const changePercentage = (change / yesterday.total_points) * 100;
+
+      return new Response(JSON.stringify({
+        today: today.total_points,
+        yesterday: yesterday.total_points,
+        change,
+        changePercentage
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     // Handle dilution endpoint
     if (routePath.startsWith('/dilution')) {
       const address = url.searchParams.get('address');
@@ -92,11 +107,7 @@ serve(async (req: Request) => {
         address,
         currentPoints: userPoints,
         dilutionPercentage: userDilution.toFixed(2),
-        minPointsNeeded: today.min_points_needed,
-        dates: {
-          today: today.created_at,
-          yesterday: yesterday.created_at
-        }
+        minPointsNeeded: today.min_points_needed
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
