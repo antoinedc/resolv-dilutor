@@ -67,9 +67,20 @@
                   <h3 class="text-lg font-semibold mb-4">Results:</h3>
                   <div class="space-y-4">
                     <div>
+                      <h4 class="text-sm font-medium text-gray-500 mb-1">Dilution Rate</h4>
+                      <p class="text-lg">
+                        <span :class="{'text-red-600': result.dilutionPercentage > 0, 'text-green-600': result.dilutionPercentage <= 0}" class="font-bold">
+                          {{ result.dilutionPercentage > 0 ? '+' : '' }}{{ result.dilutionPercentage }}%
+                        </span>
+                        <span class="text-sm text-gray-500 ml-1">
+                          (share of points {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }})
+                        </span>
+                      </p>
+                    </div>
+                    <div>
                       <h4 class="text-sm font-medium text-gray-500 mb-1">Total Points Earned</h4>
                       <p class="text-lg">
-                        <span class="font-bold text-indigo-600">{{ result.currentPoints.toLocaleString() }}</span>
+                        <span class="font-bold text-indigo-600">{{ result.totalPoints.toLocaleString() }}</span>
                         <span class="text-sm text-gray-500 ml-1">
                           ({{ ((result.currentPoints / pointsStats.today) * 100).toFixed(4) }}% of today's total)
                         </span>
@@ -80,17 +91,6 @@
                       <p class="text-lg">
                         <span class="font-bold text-indigo-600">{{ result.currentPoints.toLocaleString() }}</span>
                         <span class="text-sm text-gray-500 ml-1">points/day</span>
-                      </p>
-                    </div>
-                    <div>
-                      <h4 class="text-sm font-medium text-gray-500 mb-1">Dilution Rate</h4>
-                      <p class="text-lg">
-                        <span :class="{'text-red-600': result.dilutionPercentage > 0, 'text-green-600': result.dilutionPercentage <= 0}" class="font-bold">
-                          {{ result.dilutionPercentage > 0 ? '+' : '' }}{{ result.dilutionPercentage }}%
-                        </span>
-                        <span class="text-sm text-gray-500 ml-1">
-                          (share of points {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }})
-                        </span>
                       </p>
                     </div>
                   </div>
