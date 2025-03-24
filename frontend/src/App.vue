@@ -84,7 +84,7 @@
                           {{ result.dilutionPercentage > 0 ? '+' : '' }}{{ result.dilutionPercentage }}%
                         </span>
                         <span class="text-sm text-gray-500 ml-1">
-                          (share of points {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }} daily)
+                          (your share of points is {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }} daily)
                         </span>
                       </p>
                     </div>
@@ -125,7 +125,7 @@
                     </a>
                   </p>
                   <p class="text-sm text-gray-600">
-                    Donate:
+                    Tip:
                     <span class="font-mono text-indigo-600 break-all">0x569AAC8a49f0482D6cdC41c0d2C289935fC72253</span>
                   </p>
                 </div>
