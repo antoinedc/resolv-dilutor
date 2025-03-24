@@ -97,7 +97,7 @@ serve(async (req: Request) => {
       const response = await fetch(`https://api.resolv.im/points?address=${address}`);
       const data = await response.json();
       console.log('Resolv API response:', data);
-      const userPoints = data.dailyPoints;
+      const userPoints = data.totalPoints;
 
       const dilutionRate = (today.total_points - yesterday.total_points) / yesterday.total_points;
       const userDilution = userPoints > 0 ? -dilutionRate * 100 : 0;
