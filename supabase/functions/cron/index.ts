@@ -62,24 +62,12 @@ serve(async (req: Request) => {
       throw statsError;
     }
 
-    // Calculate minimum points needed to avoid dilution
-    let minPointsNeeded = 0;
-    if (yesterdayStats && yesterdayStats.length > 0) {
-      const yesterdayTotal = yesterdayStats[0].total_points;
-      const dilutionRate = (totalPoints - yesterdayTotal) / yesterdayTotal;
-      minPointsNeeded = Math.ceil(dilutionRate * 100);
-      console.log('Calculated values:', { yesterdayTotal, totalPoints, dilutionRate, minPointsNeeded });
-    } else {
-      console.log('No previous stats found, using initial values');
-    }
-
     // Store today's stats
     console.log('Storing new stats...');
     const { error: insertError } = await supabase
       .from('points_stats')
       .insert({
         total_points: totalPoints,
-        min_points_needed: minPointsNeeded,
         created_at: new Date().toISOString(),
       });
 
@@ -91,7 +79,6 @@ serve(async (req: Request) => {
     return new Response(JSON.stringify({
       success: true,
       totalPoints,
-      minPointsNeeded,
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
