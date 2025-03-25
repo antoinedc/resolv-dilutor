@@ -128,7 +128,7 @@ serve(async (req: Request) => {
         address,
         currentPoints: userPoints,
         totalPoints: totalPoints,
-        dilutionPercentage: userDilution.toFixed(2),
+        dilutionPercentage: userDilution,
         minPointsNeeded: today.min_points_needed,
         minPointsForZeroDilution
       }), {
