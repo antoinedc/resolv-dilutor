@@ -100,9 +100,20 @@ serve(async (req: Request) => {
       const userPoints = data.dailyPoints;
       const totalPoints = data.totalPoints;
 
-      const dilutionRate = (today.total_points - yesterday.total_points) / yesterday.total_points;
-      const userDilution = userPoints > 0 ? -dilutionRate * 100 : 0;
-      console.log('Calculated values:', { dilutionRate, userDilution });
+      // Calculate user's share of total points for today and yesterday
+      const userShareToday = (totalPoints / today.total_points) * 100;
+      const userShareYesterday = ((totalPoints - userPoints) / yesterday.total_points) * 100;
+      
+      // Calculate the percentage change in user's share
+      const userDilution = userShareYesterday - userShareToday;
+      
+      console.log('Calculated values:', { 
+        userShareToday,
+        userShareYesterday,
+        userDilution,
+        userPoints,
+        totalPoints
+      });
 
       return new Response(JSON.stringify({
         address,
