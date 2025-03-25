@@ -68,13 +68,13 @@
                   <div class="space-y-4">
                     <div>
                       <h4 class="text-sm font-medium text-gray-500 mb-1 flex items-center justify-center">
-                        Dilution Rate
+                        Share Change
                         <div class="relative inline-block">
                           <svg @mouseenter="showTooltip = true" @mouseleave="showTooltip = false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 ml-1 text-gray-400 cursor-help">
                             <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
                           </svg>
                           <div v-if="showTooltip" class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm w-64 text-center z-10">
-                            Calculation compares your current daily points against the change in total points between yesterday and today (all numbers are fetched from the Resolv API).
+                            Shows how your share of total points has changed since yesterday. A negative value means your share is increasing (you're earning faster than average), while a positive value means your share is decreasing (you're earning slower than average).
                             <div class="tooltip-arrow absolute top-full left-1/2 transform -translate-x-1/2 -mt-px border-4 border-transparent border-t-gray-900"></div>
                           </div>
                         </div>
@@ -84,7 +84,7 @@
                           {{ result.dilutionPercentage > 0 ? '+' : '' }}{{ result.dilutionPercentage }}%
                         </span>
                         <span class="text-sm text-gray-500 ml-1">
-                          (your share of points is {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }} daily)
+                          (your share of total points is {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }})
                         </span>
                       </p>
                     </div>
@@ -101,7 +101,7 @@
                       <h4 class="text-sm font-medium text-gray-500 mb-1">Daily Points</h4>
                       <p class="text-lg">
                         <span class="font-bold text-indigo-600">{{ result.currentPoints.toLocaleString() }}</span>
-                        <span class="text-sm text-gray-500 ml-1">points/day ({{ ((result.currentPoints / pointsStats.change) * 100).toFixed(4) }}% of daily new points)</span>
+                        <span class="text-sm text-gray-500 ml-1">points/day ({{ ((result.currentPoints / pointsStats.change) * 100).toFixed(4) }}% of new points)</span>
                       </p>
                     </div>
                   </div>
