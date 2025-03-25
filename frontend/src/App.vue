@@ -87,6 +87,12 @@
                           (your share of total points is {{ result.dilutionPercentage <= 0 ? 'increasing' : 'decreasing' }})
                         </span>
                       </p>
+                      <div class="mt-2">
+                        <p class="text-sm text-gray-600">
+                          Minimum Points Needed<br/>
+                          You need to earn at least <span class="font-bold text-indigo-600">{{ result.minPointsForZeroDilution.toLocaleString() }}</span> points per day to avoid dilution
+                        </p>
+                      </div>
                     </div>
                     <div>
                       <h4 class="text-sm font-medium text-gray-500 mb-1">Total Points Earned</h4>

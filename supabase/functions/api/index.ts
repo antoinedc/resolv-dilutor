@@ -106,13 +106,22 @@ serve(async (req: Request) => {
       
       // Calculate the percentage change in user's share
       const userDilution = userShareYesterday - userShareToday;
+
+      // Calculate minimum points needed for 0% dilution
+      // At 0% dilution: userShareToday = userShareYesterday
+      // (totalPoints / today.total_points) = ((totalPoints - minPoints) / yesterday.total_points)
+      // Solve for minPoints:
+      const minPointsForZeroDilution = Math.ceil(
+        totalPoints * (today.total_points / yesterday.total_points - 1)
+      );
       
       console.log('Calculated values:', { 
         userShareToday,
         userShareYesterday,
         userDilution,
         userPoints,
-        totalPoints
+        totalPoints,
+        minPointsForZeroDilution
       });
 
       return new Response(JSON.stringify({
@@ -120,7 +129,8 @@ serve(async (req: Request) => {
         currentPoints: userPoints,
         totalPoints: totalPoints,
         dilutionPercentage: userDilution.toFixed(2),
-        minPointsNeeded: today.min_points_needed
+        minPointsNeeded: today.min_points_needed,
+        minPointsForZeroDilution
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
