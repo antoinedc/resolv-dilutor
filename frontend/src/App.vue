@@ -9,13 +9,6 @@
                 <h1 class="text-2xl font-bold mb-8 text-center text-indigo-600">Resolv Points Dilution Calculator</h1>
                 
                 <div class="mb-8">
-                  <h2 class="text-lg font-semibold mb-2">Minimum Points Needed</h2>
-                  <p class="text-gray-600">
-                    You need to earn at least <span class="font-bold text-indigo-600">{{ minPointsNeeded.toLocaleString() }}</span> points per day to avoid dilution
-                  </p>
-                </div>
-
-                <div class="mb-8">
                   <h2 class="text-lg font-semibold mb-2">Points Stats</h2>
                   <div v-if="pointsStats" class="space-y-2">
                     <p class="text-gray-600">
@@ -172,7 +165,6 @@ const address = ref('')
 const loading = ref(false)
 const error = ref('')
 const result = ref<any>(null)
-const minPointsNeeded = ref<number>(0)
 const pointsStats = ref<any>(null)
 const showTooltip = ref(false)
 
@@ -216,34 +208,6 @@ async function calculateDilution() {
   }
 }
 
-async function fetchMinimumPoints() {
-  console.log('API Configuration:', { url: API_URL, hasKey: !!API_KEY });
-  const url = `${API_URL}/min-points`;
-  console.log('Fetching minimum points:', { url });
-  
-  try {
-    const response = await fetch(url, {
-      headers: {
-        'apikey': API_KEY,
-        'Authorization': `Bearer ${API_KEY}`
-      }
-    });
-    
-    console.log('Response status:', response.status);
-    const data = await response.json();
-    console.log('Response data:', data);
-    
-    if (!response.ok) {
-      throw new Error(data.error || 'Failed to fetch minimum points');
-    }
-    
-    minPointsNeeded.value = data.minPointsNeeded;
-  } catch (error) {
-    console.error('Minimum points error:', error);
-    throw error;
-  }
-}
-
 async function fetchPointsStats() {
   console.log('API Configuration:', { url: API_URL, hasKey: !!API_KEY });
   const url = `${API_URL}/points-stats`;
@@ -273,7 +237,6 @@ async function fetchPointsStats() {
 }
 
 onMounted(() => {
-  fetchMinimumPoints()
   fetchPointsStats()
 })
 </script>
