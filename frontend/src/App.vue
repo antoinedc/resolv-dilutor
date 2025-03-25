@@ -28,6 +28,9 @@
                   <div v-else class="text-gray-500">
                     Loading points statistics...
                   </div>
+                  <p class="text-xs text-gray-500 mt-2 italic">
+                    Stats are updated every day at 12:00 PM UTC
+                  </p>
                 </div>
 
                 <div class="mb-8">
